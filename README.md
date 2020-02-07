@@ -37,6 +37,10 @@ Install all the dependecies
 
 `$ pip install -r requirements.txt`
 
+To change the location, use
+
+`$ git remote set-url heroku https://git.heroku.com/<appname>.git`
+
 
 
 ## Heroku Setup
@@ -73,7 +77,7 @@ $ git commit -m "start"
 $ git push heroku master
 ```
 
-For existing repositories and exisitng apps, simply add the heroku remote
+For existing repositories and apps, simply add the heroku remote
 
 `$ heroku git:remote -a appname`
 
