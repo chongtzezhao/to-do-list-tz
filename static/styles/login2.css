@@ -1,0 +1,63 @@
+h1 {
+    font-family: "Source Sans Pro";
+    font-size: 40px;
+    text-align: center;
+}
+
+p {
+    font-family: "Source Sans Pro";
+}
+
+body {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    background-image: url("../images/login-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#rcorners {
+    background: transparent;
+    padding: 25px;
+    /*box-shadow: 10px 10px 5px grey;*/
+    width: 20vw;
+    height: 60vh;
+    min-width: 200px;
+    opacity: 0.5;
+    display: block;
+}
+
+
+img{
+    width: 10vw;
+    height: 10vw;
+    min-width: 90px;
+    min-height: 90px;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 15vh;
+}
+
+.login-button{
+    text-align: center;
+    margin: auto;
+    opacity: 1;
+}
+
+.button-text {
+    border-radius: 15px;
+    font-family: "Varela Round";
+    font-size: 40px;
+    text-decoration: none;
+    background-color: red;
+    color: #ffffff;
+    padding: 10px 30px 10px 30px;
+    border-top: 5px solid #CCCCCC;
+    border-right: 5px solid #333333;
+    border-bottom: 5px solid #333333;
+    border-left: 5px solid #CCCCCC;
+}

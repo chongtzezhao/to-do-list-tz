@@ -1,0 +1,54 @@
+html, body{
+    margin: 0px;
+    
+}   
+
+.logo{
+    padding:0;
+    border:0;
+    margin:0;
+    height: 8vh;
+    min-height: 35px;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    right: auto;
+}
+
+.navbar {
+    background: #80aaff;
+    padding: 0px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border: 0px;
+    /*box-shadow: 10px 10px 5px grey;*/
+    width: auto;
+    min-width: 400px;
+    height: 10vh;
+    min-height: 50px;
+    opacity: 1;
+    position:scroll;
+    position: relative;
+}
+
+.nav-link{
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    right: 0%;
+    left: auto;
+    /*margin-top: 15px;*/
+    border: 0px;
+    color: black;
+    font-size: 25px; 
+    text-decoration: none;
+}
+
+.highlight{
+    border-radius: 10px;
+    padding: 1vh 0.8vw 1vh 0.8vw;
+}
+
+.highlight:hover{
+    background-color: #4dff4d;
+}

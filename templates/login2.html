@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TZ's To-Do List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../static/styles/login2.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+  <!--video autoplay muted loop id="myVideo">
+    <source src="{{url_for('static', filename='images/login-pc-background.mp4')}}" type="video/mp4">\
+    https://i.imgur.com/EqWnlvu.mp4
+    </video>-->
+
+  <script>
+  
+  </script>
+</head>
+<body>
+
+  <style>
+    #rcorners:hover{
+      opacity: 1;
+    }
+  </style>
+  <div id="rcorners" class="center">
+    <h1>ToDo List</h1>
+    <a href="/login">
+      <img src="../static/images/logo.png">
+      <br>
+      <img src="../static/images/google_sign.png">
+    </a>
+  </div>
+
+  <script>
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    var elem = document.getElementById("animate");
+    var posx = 0;
+    var posy = 0;
+    var hex = "000000"
+    var i=0;
+    var teleport = Math.floor(Math.random() * 40 + 10);
+    var id = setInterval(frame, 10);
+    var id = setInterval(changeColor, 10);
+    function frame() {
+      var elemW = elem.clientWidth;
+      var elemH = elem.clientHeight;
+      if (i == teleport) {
+        i = 0;
+        teleport =  Math.floor(Math.random() * 40 + 10);
+        posx = Math.floor(Math.random() * (w - elemW));
+        posy = Math.floor(Math.random() * (h - elemH));
+        elem.style.marginLeft = posx + "px";
+        elem.style.marginTop = posy + "px";
+        return
+      }
+      i+=1;
+      var plusMinus = Math.round((Math.floor(Math.random() * 2) - 0.5) * 2);
+      posx += plusMinus*Math.floor(Math.random() * 10 + 5);
+      if (posx >= w-elemW || posx<0) {
+        posx = w/2;
+      }
+      elem.style.marginLeft = posx + "px";
+
+      var plusMinus = Math.round((Math.floor(Math.random() * 2) - 0.5) * 2);
+      posy += plusMinus*Math.floor(Math.random() * 10 + 5);
+      if (posy >= h-elemH || posy<0) {
+        posy = h/2  ;
+      }
+      elem.style.marginTop = posy + "px";
+    }
+
+    var changex = 1;
+    var changey = 1;
+    function frame2() {
+        posx += changex*Math.floor(Math.random() * 10);
+        if (posx >= w - 130 || posx < 0) {
+          posx = Math.floor(Math.random() * 2)*w;
+          changex = Math.round((Math.floor(Math.random() * 2) - 0.5) * 2);
+        }
+        elem.style.marginLeft = posx + "px";
+
+        posy += changey * Math.floor(Math.random() * 10);
+        if (posy >= h - 130 || posy < 0) {
+          posy = Math.floor(Math.random() * 2) * h;
+          changey = Math.round((Math.floor(Math.random() * 2) - 0.5) * 2);
+        }
+        elem.style.marginTop = posy + "px";
+      }
+
+    function changeColor(){
+      var rgb = Math.floor(Math.random() * 3);
+      var alter = parseInt(hex.slice(rgb*2, rgb*2+2), 16);
+      var plusMinus = Math.round((Math.floor(Math.random()*2)-0.5)*2);
+      alter = (alter+plusMinus*Math.floor(Math.random() * 20)+10)% 256;
+      alter = alter.toString(16);
+      if(rgb==2){
+        hex = hex.slice(0, 4)+alter;
+      }
+      else if(rgb==0){
+        hex = alter+hex.slice(2, 6);
+      }
+      else{
+        hex = hex.slice(0, 2) + alter + hex.slice(4, 6);
+      }
+      elem.style.color = "#"+hex;
+    }
+    </script>
+
+</body>
+
+</html>

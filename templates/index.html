@@ -1,0 +1,137 @@
+{% extends "bootstrap.html" %}
+
+{% block body %}
+
+<head> 
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+  <link href="https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro" rel='stylesheet'>
+</head>
+
+<div id="main" style="text-align: center;">
+  <h1>
+    Welcome {{ user_email }}!
+  </h1>
+  
+</div>
+
+<div class="container">
+  <table id="newtask">
+    <tr style="background-color: transparent;">
+      <th style="width: 10vw">Task</th>
+      <th style="width: 20vw">Description</th>
+      <th style="width: 10vw">Due date</th>
+      <th style="width: 10vw"></th>
+    </tr>
+    <tr>
+      <form action="/add_task" method="post">
+        <td><textarea class="table-input not-datetime" type="text" name="task" required></textarea></td>
+        <td><textarea class="table-input not-datetime" type="text" name="details"></textarea></td>
+        <td><input class="table-input" type="date" name="date" required>
+          <input class="table-input" type="time" name="time" required></td>
+        <td><input type="submit" style="background-color: greenyellow;" class="submit" value="Add Task"></td>
+      </form>
+    </tr>
+  </table>
+  <h3 style="text-align: center;">
+    Here are your remaining tasks!
+  </h3>
+  <form action="/finish_task" method="post">
+    <table id="mytasks">
+      <tr style="background-color: transparent;">
+        <th style="width: 10vw">Task</th>
+        <th style="width: 20vw">Description</th>
+        <th style="width: 10vw">Due in</th>
+        <th style="width: 10vw">Completed?</th>
+      </tr>
+      {% for i in range(tasks|length) %}
+      {% set row = tasks[i] %}
+      {% if row[4]==0 %}
+      <tr>
+        <td style="padding: 0vw 1vw 0vw 1vw;">{{row[1]}}</td>
+        <td style="padding: 1vh 1vw 1vh 1vw; word-wrap: break-word; max-width: 1vw;">{{row[2]}}</td>
+        <td style="text-align: center;" id={{row[0]}}></td>
+        <td style="text-align: center;">
+          <input type="checkbox" class="checkbox" name="check" value={{row[0]}}>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    <input type="submit" class="submit" style="background-color: green;" value="Finish">
+    <!--button type="button" onclick="addTask()" class="submit" style="background-color: greenyellow; float: left;">Add task</!--button>
+  </form>
+  <br>
+  <form id="jsform" action="/add_task" method="post">
+    <div class="label">Task:</div>
+    <textarea class="jsform-input" name="task" required></textarea>
+    <div class="label">Details:</div>
+    <textarea class="jsform-input" name="details" style="height: 50px"></textarea>
+    <div class="label">Due by:</div>
+    <br>
+    <input class="jsform-input date" type="date" name="date" required>
+    <input class="jsform-input time" type="time" name="time" required>
+    <br>
+    <input type="submit" class="submit" value="Submit">
+  </form-->
+</div>
+<div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<script>
+  
+  // function to submit a new task
+  /*function addTask() {
+    var x = document.getElementById("jsform");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }*/
+
+  function newTimer(taskId, countDownDate) {
+      var running = setInterval(function () {
+        var now = new Date().getTime();
+        var due = new Date(countDownDate).getTime();
+
+        // Find the distance between now and the count down date
+        var distance = due - now;
+
+        if (distance >= 0) {
+          // Time calculations for days, hours, minutes and seconds
+          var weeks = Math.floor(distance / (1000 * 60 * 60 * 24 * 7)) > 0 ? Math.floor(distance / (1000 * 60 * 60 * 24 * 7)) + "w " : "";
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24)) > 0 ? Math.floor(distance / (1000 * 60 * 60 * 24)) + "d " : "";
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) > 0 ? Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + "h " : "";
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) > 0 ? Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + "m " : "";
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000) > 0 ? Math.floor((distance % (1000 * 60)) / 1000) + "s " : "";
+
+          // Output the result in an element with id=taskId
+          document.getElementById(taskId).innerHTML = weeks + days + hours + minutes + seconds;
+        }
+        else { // If the count down is over, write some text 
+          document.getElementById(taskId).innerHTML = "EXPIRED";
+          clearInterval(running);
+          document.getElementById(taskId).style.fontSize = "calc(1vw + 25px)";
+          setInterval(function () {
+            if (document.getElementById(taskId).style.color == "red") {
+              document.getElementById(taskId).style.color = "black";
+            }
+            else {
+              document.getElementById(taskId).style.color = "red";
+            }
+          }, 200);
+
+        }
+      }, 100);
+    }
+
+    var x = "{% for i in range(tasks | length) %}";
+    var date = "{{tasks[i][3]}}";
+    var taskID = "{{tasks[i][0]}}";
+    newTimer(taskID, date);
+    var y = "{% endfor %}";
+  
+</script>
+
+{% endblock %}

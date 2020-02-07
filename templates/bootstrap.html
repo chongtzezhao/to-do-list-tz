@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>TZ's To-Do List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='styles/customnavbar.css')}}">
+  <link href='https://fonts.googleapis.com/css?family=Galdeano' rel='stylesheet'>
+</head>
+
+<body>
+  <link href="https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro" rel='stylesheet'>
+
+
+  <div class=navbar style="font-family: Galdeano;">
+    <a href="/"><img src="{{url_for('static', filename='images/logo.png')}}" class="logo highlight"></a>
+    <a class="nav-link highlight" href="/logout" style="float: right;">Logout</a>
+  </div>
+{% block body %}
+
+{% endblock %}
+</body>
+</html>
