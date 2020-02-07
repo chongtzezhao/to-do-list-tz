@@ -22,8 +22,8 @@ from user import User
 year = str(datetime.today().year)
 year = year[2:]
 # Configuration
-GOOGLE_CLIENT_ID = "911804879444-6f9ask4mtl2scck10l9vvkdrik2u79et.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "kOC0QwlOcBlG0YgA49SdxB_o"
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 GOOGLE_DISCOVERY_URL = (
     "https://accounts.google.com/.well-known/openid-configuration"
 )
@@ -261,7 +261,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     #app.debug = False
     #for normal local testing use this run
-    app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
+    #app.run(ssl_context="adhoc",host='127.0.0.1', port=port, debug=True)
     #for deployment to heroku app use this
-    #app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
     
